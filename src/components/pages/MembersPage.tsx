@@ -98,10 +98,9 @@ const MembersPage = () => {
                   <img
                     src={member.image}
                     alt={member.name}
-                    className="absolute inset-0 w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
+                    className="absolute inset-0 w-full h-full object-cover transition-all duration-700"
                     loading="lazy"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
                   {/* Name Overlay */}
                   <div className="absolute bottom-0 left-0 p-8">

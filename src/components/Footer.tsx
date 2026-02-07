@@ -51,7 +51,7 @@ const Footer = () => {
   return (
     <footer className="relative bg-[#0f0f0f] border-t border-[#9dff00]/20">
       <div className="noise-texture absolute inset-0" />
-      
+
       <div className="relative z-10 max-w-7xl mx-auto px-6 py-16">
         {/* Newsletter Section */}
         <motion.div
@@ -67,7 +67,7 @@ const Footer = () => {
           <p className="text-[#e0e0e0] mb-8 max-w-md mx-auto">
             Subscribe to our newsletter for updates on new covers, events, and workshops
           </p>
-          
+
           <form onSubmit={handleSubmit} className="max-w-md mx-auto">
             <div className="flex flex-col gap-3">
               <div className="flex gap-3">
@@ -79,13 +79,12 @@ const Footer = () => {
                     onChange={handleEmailChange}
                     aria-invalid={email && !isValidEmail ? 'true' : 'false'}
                     aria-describedby={email && !isValidEmail ? 'email-error' : undefined}
-                    className={`bg-white/5 border-2 backdrop-blur-sm text-white placeholder:text-[#e0e0e0]/50 h-12 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#9dff00] focus:ring-offset-2 focus:ring-offset-[#0f0f0f] ${
-                      isValidEmail
-                        ? 'border-[#9dff00]'
-                        : email
+                    className={`bg-white/5 border-2 backdrop-blur-sm text-white placeholder:text-[#e0e0e0]/50 h-12 rounded-lg transition-all duration-200 focus:outline-none focus:ring-2 focus:ring-[#9dff00] focus:ring-offset-2 focus:ring-offset-[#0f0f0f] ${isValidEmail
+                      ? 'border-[#9dff00]'
+                      : email
                         ? 'border-red-500'
                         : 'border-white/10'
-                    }`}
+                      }`}
                   />
                   {isSubmitted && (
                     <motion.div
@@ -127,7 +126,7 @@ const Footer = () => {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://instagram.com"
+                href="https://www.instagram.com/honeydewcrew_perth/?hl=en"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit our Instagram"
@@ -145,7 +144,7 @@ const Footer = () => {
                 <Twitter className="w-5 h-5 text-white" aria-hidden="true" />
               </a>
               <a
-                href="https://youtube.com"
+                href="https://www.youtube.com/@HoneyDew-Crew"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Visit our YouTube channel"
@@ -198,7 +197,7 @@ const Footer = () => {
 
         {/* Copyright */}
         <div className="pt-8 border-t border-white/10 text-center text-[#e0e0e0] text-sm">
-          <p>&copy; 2024 Honeydew Crew. All rights reserved.</p>
+          <p>&copy; 2026 Honeydew Crew. All rights reserved.</p>
         </div>
       </div>
     </footer>

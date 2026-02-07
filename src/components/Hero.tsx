@@ -18,12 +18,12 @@ const Hero = () => {
   return (
     <section
       id="hero"
-      className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-black"
+      className="relative w-full h-[100svh] flex items-center justify-center overflow-hidden bg-black"
     >
       {/* Self-hosted Video Background */}
       <div className="absolute inset-0 w-full h-full">
         <video
-          className="absolute top-1/2 left-1/2 w-[177.77vh] h-[100vh] min-w-[100vw] min-h-[56.25vw] -translate-x-1/2 -translate-y-1/2 object-cover"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           autoPlay={!prefersReducedMotion}
           muted
           loop
