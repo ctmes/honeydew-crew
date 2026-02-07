@@ -103,27 +103,27 @@ const MembersPage = () => {
                   />
 
                   {/* Name Overlay */}
-                  <div className="absolute bottom-0 left-0 p-8">
-                    <div className="text-8xl md:text-9xl font-extrabold text-white/10 uppercase tracking-tighter">
+                  <div className="absolute bottom-0 left-0 p-4 sm:p-6 md:p-8">
+                    <div className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-extrabold text-white/10 uppercase tracking-tighter">
                       {String(index + 1).padStart(2, '0')}
                     </div>
                   </div>
                 </div>
 
                 {/* Info */}
-                <div className="bg-[#0f0f0f] border border-[#9dff00]/10 p-8 lg:p-12 flex flex-col justify-center">
+                <div className="bg-[#0f0f0f] border border-[#9dff00]/10 p-5 sm:p-6 md:p-8 lg:p-12 flex flex-col justify-center">
                   {/* Header */}
-                  <div className="mb-8">
-                    <span className="text-[#9dff00] font-bold uppercase tracking-[0.2em] text-sm mb-2 block">
+                  <div className="mb-4 sm:mb-6 md:mb-8">
+                    <span className="text-[#9dff00] font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-xs sm:text-sm mb-1 sm:mb-2 block">
                       {member.role}
                     </span>
-                    <h2 className="text-5xl md:text-6xl font-extrabold text-white uppercase tracking-tight">
+                    <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold text-white uppercase tracking-tight">
                       {member.name}
                     </h2>
                   </div>
 
                   {/* Bio */}
-                  <p className="text-lg text-[#e0e0e0] leading-relaxed mb-8">
+                  <p className="text-sm sm:text-base md:text-lg text-[#e0e0e0] leading-relaxed mb-4 sm:mb-6 md:mb-8">
                     {member.bio}
                   </p>
 
