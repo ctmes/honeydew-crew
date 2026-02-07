@@ -54,7 +54,7 @@ const EventsPage = () => {
   return (
     <div className="w-full min-h-screen bg-[#0f0f0f]">
       <Navigation />
-      
+
       <main className="pt-24 pb-16">
         {/* Header */}
         <section className="px-4 md:px-8 lg:px-16 mb-12">
@@ -104,7 +104,7 @@ const EventsPage = () => {
 
                 {/* Events List */}
                 <div className="space-y-0">
-                  {groupedEvents[year].map((event, index) => (
+                  {groupedEvents[year].slice().reverse().map((event, index) => (
                     <article
                       key={event.id}
                       className="group grid grid-cols-[80px_1fr] md:grid-cols-[120px_1fr] gap-0 border-b border-[#9dff00]/10 last:border-b-0 hover:bg-[#1a1a1a]/50 transition-all duration-300"

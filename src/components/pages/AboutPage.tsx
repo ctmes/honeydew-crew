@@ -5,7 +5,7 @@ const AboutPage = () => {
   return (
     <div className="w-full min-h-screen bg-[#0f0f0f]">
       <Navigation />
-      
+
       <main className="pt-24 pb-16">
         {/* Hero Section */}
         <section className="px-4 md:px-8 lg:px-16 mb-0">
@@ -53,7 +53,7 @@ const AboutPage = () => {
                 <div className="text-xl font-bold text-black/80 uppercase tracking-wider">Covers</div>
               </div>
               <div>
-                <div className="text-6xl font-extrabold text-black mb-2">12+</div>
+                <div className="text-6xl font-extrabold text-black mb-2">4</div>
                 <div className="text-xl font-bold text-black/80 uppercase tracking-wider">Members</div>
               </div>
               <div>
@@ -61,7 +61,7 @@ const AboutPage = () => {
                 <div className="text-xl font-bold text-black/80 uppercase tracking-wider">Events</div>
               </div>
               <div>
-                <div className="text-6xl font-extrabold text-black mb-2">10K+</div>
+                <div className="text-6xl font-extrabold text-black mb-2">1000+</div>
                 <div className="text-xl font-bold text-black/80 uppercase tracking-wider">Followers</div>
               </div>
             </div>

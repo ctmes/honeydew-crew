@@ -8,7 +8,7 @@ const MembersPage = () => {
       id: 1,
       name: "ARJIE",
       role: "Founder / Choreographer",
-      image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?w=400&q=80",
+      image: "/arjie.jpg",
       bio: "The visionary behind Honeydew Crew. Arjie founded the group in 2020 with a dream of bringing K-pop dance culture to Perth. With over 8 years of dance experience spanning hip-hop, contemporary, and street styles, she leads choreography sessions and coordinates all major performances.",
       specialty: "Hip-hop, Choreography, K-pop",
       favArtists: "BLACKPINK, Stray Kids, TWICE",
@@ -19,7 +19,7 @@ const MembersPage = () => {
       id: 2,
       name: "DECHEN",
       role: "Performance Director",
-      image: "https://images.unsplash.com/photo-1488426862026-3ee34a7d66df?w=400&q=80",
+      image: "/decchan.jpg",
       bio: "The energy powerhouse of the crew. Dechen brings an infectious stage presence that captivates every audience. She handles performance direction, ensuring every formation and transition is polished to perfection. Her background in contemporary dance adds a unique fluidity to the group's style.",
       specialty: "Contemporary, Stage Performance, Formations",
       favArtists: "aespa, NewJeans, IVE",
@@ -30,7 +30,7 @@ const MembersPage = () => {
       id: 3,
       name: "LEA",
       role: "Lead Dancer / Creative Director",
-      image: "https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400&q=80",
+      image: "/lea.jpg",
       bio: "The creative force that elevates every performance. Lea combines technical precision with artistic expression, bringing a dynamic edge to the crew's choreography. Her versatility across multiple dance styles makes her an invaluable asset to every routine. She also manages the crew's visual content and social media presence.",
       specialty: "Jazz, Waacking, Content Creation",
       favArtists: "BTS, SEVENTEEN, TXT",
@@ -53,7 +53,7 @@ const MembersPage = () => {
   return (
     <div className="w-full min-h-screen bg-[#0f0f0f]">
       <Navigation />
-      
+
       <main className="pt-24 pb-16">
         {/* Header */}
         <section className="px-4 md:px-8 lg:px-16 mb-12">
@@ -102,7 +102,7 @@ const MembersPage = () => {
                     loading="lazy"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-                  
+
                   {/* Name Overlay */}
                   <div className="absolute bottom-0 left-0 p-8">
                     <div className="text-8xl md:text-9xl font-extrabold text-white/10 uppercase tracking-tighter">
