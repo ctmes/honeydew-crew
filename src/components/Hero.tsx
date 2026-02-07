@@ -82,15 +82,16 @@ const Hero = () => {
       <div className="absolute inset-0 w-full h-full">
         <video
           ref={videoRef}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="absolute inset-0 w-full h-full object-cover pointer-events-none"
           autoPlay={!prefersReducedMotion}
           muted
           loop
           playsInline
+          poster="/covers.jpg"
           aria-label="Hero Video - Background performance showcase"
         >
           <source src="/hero-video.webm" type="video/webm" />
-          <source src="/hero-video.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
         </video>
 
         {/* Play button overlay for mobile when autoplay fails */}

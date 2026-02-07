@@ -58,7 +58,7 @@ const MembersPage = () => {
         {/* Header */}
         <section className="px-4 md:px-8 lg:px-16 mb-12">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-white uppercase tracking-tight mb-2 sm:mb-3 md:mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-8xl font-extrabold text-white uppercase tracking-tight mb-2 sm:mb-3 md:mb-4">
               MEMBER PROFILE
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-[#e0e0e0] max-w-2xl">
