@@ -189,7 +189,7 @@ const Footer = () => {
             </h4>
             <ul className="space-y-3 text-[#e0e0e0]">
               <li>contact@honeydewcrew.com</li>
-              <li>Los Angeles, CA</li>
+              <li>Perth, Australia</li>
               <li>+1 (555) 123-4567</li>
             </ul>
           </div>
