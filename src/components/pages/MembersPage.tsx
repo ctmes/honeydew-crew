@@ -58,10 +58,10 @@ const MembersPage = () => {
         {/* Header */}
         <section className="px-4 md:px-8 lg:px-16 mb-12">
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-6xl md:text-8xl font-extrabold text-white uppercase tracking-tight mb-4">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-white uppercase tracking-tight mb-2 sm:mb-3 md:mb-4">
               MEMBER PROFILE
             </h1>
-            <p className="text-xl text-[#e0e0e0] max-w-2xl">
+            <p className="text-base sm:text-lg md:text-xl text-[#e0e0e0] max-w-2xl">
               Meet the talented dancers behind Honeydew Crew
             </p>
           </div>
@@ -75,7 +75,7 @@ const MembersPage = () => {
               <div className="text-lg font-bold text-black/70 uppercase tracking-wider">MEMBERS</div>
             </div>
             <div className="text-center">
-              <div className="text-5xl font-extrabold text-black">25+</div>
+              <div className="text-5xl font-extrabold text-black">30+</div>
               <div className="text-lg font-bold text-black/70 uppercase tracking-wider">EVENTS</div>
             </div>
             <div className="text-center">

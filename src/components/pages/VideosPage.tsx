@@ -50,13 +50,13 @@ const VideosPage = () => {
   return (
     <div className="w-full min-h-screen bg-[#0f0f0f]">
       <Navigation />
-      
+
       <main className="pt-24 pb-16 px-4 md:px-8 lg:px-16">
         <div className="max-w-7xl mx-auto">
-          <h1 className="text-6xl md:text-8xl font-extrabold text-white uppercase tracking-tight mb-4">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-extrabold text-white uppercase tracking-tight mb-2 sm:mb-3 md:mb-4">
             VIDEOS
           </h1>
-          <p className="text-xl text-[#e0e0e0] mb-12 max-w-2xl">
+          <p className="text-base sm:text-lg md:text-xl text-[#e0e0e0] mb-8 sm:mb-10 md:mb-12 max-w-2xl">
             Watch our high-energy K-pop & J-pop dance cover performances
           </p>
 
@@ -73,7 +73,7 @@ const VideosPage = () => {
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
-                
+
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="w-16 h-16 border-2 border-[#9dff00] flex items-center justify-center">
                     <svg className="w-8 h-8 text-[#9dff00] fill-[#9dff00]" viewBox="0 0 24 24">
