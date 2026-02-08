@@ -17,10 +17,10 @@ const MembersPage = () => {
     },
     {
       id: 2,
-      name: "DECHEN",
+      name: "DECCHAN",
       role: "Performance Director",
       image: "/decchan.jpg",
-      bio: "The energy powerhouse of the crew. Dechen brings an infectious stage presence that captivates every audience. She handles performance direction, ensuring every formation and transition is polished to perfection. Her background in contemporary dance adds a unique fluidity to the group's style.",
+      bio: "The energy powerhouse of the crew. Decchan brings an infectious stage presence that captivates every audience. She handles performance direction, ensuring every formation and transition is polished to perfection. Her background in contemporary dance adds a unique fluidity to the group's style.",
       specialty: "Contemporary, Stage Performance, Formations",
       favArtists: "aespa, NewJeans, IVE",
       funFact: "Never misses a beat — literally has perfect rhythm",

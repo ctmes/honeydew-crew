@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Navigation from '@/components/Navigation';
 import Footer from '@/components/Footer';
-import EventGallery from '../EventGallery';
 
 // Helper function to convert event title to folder name slug
 const slugify = (text: string) => {
@@ -17,27 +17,24 @@ interface EventImageData {
 }
 
 const EventsPage = () => {
-  const [expandedEvents, setExpandedEvents] = useState<Set<number>>(new Set());
+  const navigate = useNavigate();
   const [eventImages, setEventImages] = useState<EventImageData>({});
 
-  // Toggle event expansion
-  const toggleEvent = (eventId: number) => {
-    setExpandedEvents(prev => {
-      const newSet = new Set(prev);
-      if (newSet.has(eventId)) {
-        newSet.delete(eventId);
-      } else {
-        newSet.add(eventId);
-      }
-      return newSet;
-    });
-  };
-
-  // Get images for a specific event based on its title and year
+  // Helper to get images
   const getEventImages = (title: string, year: string): string[] => {
     const folderSlug = `${slugify(title)}-${year}`;
     return eventImages[folderSlug] || [];
   };
+
+  const handleEventClick = (event: typeof events[0]) => {
+    const images = getEventImages(event.title, event.year);
+    if (images.length > 0) {
+      const folderSlug = `${slugify(event.title)}-${event.year}`;
+      navigate(`/gallery#${folderSlug}`);
+    }
+  };
+
+
 
   // Load event images on mount
   useEffect(() => {
@@ -161,77 +158,107 @@ const EventsPage = () => {
                   {groupedEvents[year].slice().reverse().map((event, index) => {
                     const images = getEventImages(event.title, event.year);
                     const hasImages = images.length > 0;
-                    const isExpanded = expandedEvents.has(event.id);
                     const folderSlug = `${slugify(event.title)}-${event.year}`;
-                    const hasContent = hasImages || !!event.description;
+
+                    // Main photo is the first image if available
+                    // We'll use the thumb version for performance if possible, but for now just use the image
+                    // The manifest returns full filenames like "Lula...webp"
+                    // We need to construct the path akin to EventGallery: /events/{folderSlug}/{image}
+                    const mainPhoto = hasImages ? `/events/${folderSlug}/${images[0]}` : null;
 
                     return (
                       <div key={event.id}>
                         <article
-                          onClick={() => hasContent && toggleEvent(event.id)}
-                          className={`group grid grid-cols-[70px_1fr] sm:grid-cols-[90px_1fr] md:grid-cols-[120px_1fr] gap-0 border-b border-[#9dff00]/10 last:border-b-0 hover:bg-[#1a1a1a]/50 active:bg-[#1a1a1a]/70 transition-all duration-300 ${hasContent ? 'cursor-pointer' : ''} ${isExpanded ? 'bg-[#1a1a1a]/70' : ''}`}
+                          className={`group grid grid-cols-[70px_1fr] sm:grid-cols-[90px_260px_1fr] md:grid-cols-[120px_320px_1fr] gap-4 sm:gap-6 border-b border-[#9dff00]/10 last:border-b-0 hover:bg-[#1a1a1a]/50 transition-all duration-300 py-6 pr-4`}
                         >
                           {/* Date Column */}
-                          <div className="py-4 sm:py-5 md:py-6 px-2 sm:px-3 md:px-4 border-r border-[#9dff00]/10 flex flex-col justify-center">
-                            <span className="text-[#9dff00] font-extrabold text-xs sm:text-sm md:text-base uppercase tracking-wider">
+                          <div className="flex flex-col justify-start pt-1 sm:pt-2 px-2 sm:px-3 border-r border-[#9dff00]/10">
+                            <span className="text-[#9dff00] font-extrabold text-xs sm:text-sm md:text-base uppercase tracking-wider text-right pr-4">
                               {event.date}
                             </span>
                           </div>
 
-                          {/* Content Column */}
-                          <div className="py-4 sm:py-5 md:py-6 px-3 sm:px-4 md:px-6 flex flex-col justify-center">
-                            <div className="flex items-start justify-between gap-2">
-                              <div className="flex-1">
-                                {event.milestone && (
-                                  <span className="text-[#9dff00]/80 text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.1em] sm:tracking-[0.15em] mb-0.5 sm:mb-1 line-clamp-2 block">
-                                    {event.milestone}
-                                  </span>
-                                )}
-                                <h3 className="text-sm sm:text-base md:text-lg lg:text-2xl font-extrabold text-white uppercase tracking-tight group-hover:text-[#9dff00] transition-colors duration-300">
-                                  {event.title}
-                                </h3>
+                          {/* Image Column - Hidden on mobile, shown on sm+ grids, or we can make it show on mobile too if we adjust cols */}
+                          {/* Let's make it show on mobile too but smaller or different layout? 
+                              Actually the grid above is [70px_1fr] on mobile, so the image needs to be handled.
+                              Let's make mobile just 2 columns (Date | Content) and put image inside content?
+                              Or stick to 3 columns but small image? 
+                              Let's try 3 columns on sm+, and on mobile just hide image or put it above title??
+                              
+                              DECISION: On mobile, let's keep it simple: Date | Content.
+                              Inside Content, we show the image if it exists.
+                           */}
+
+                          {/* Desktop/Tablet Image Column (Hidden on mobile) */}
+                          <div className="hidden sm:block">
+                            {mainPhoto ? (
+                              <div
+                                onClick={() => handleEventClick(event)}
+                                className="aspect-[4/3] w-full overflow-hidden rounded-md cursor-pointer group-hover:brightness-110 transition-all bg-[#1a1a1a]"
+                              >
+                                <img
+                                  src={mainPhoto}
+                                  alt={event.title}
+                                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                                  loading="lazy"
+                                />
                               </div>
-                              {hasContent && (
-                                <div className={`flex items-center gap-1 sm:gap-2 text-[#9dff00] transition-transform duration-300 ${isExpanded ? 'rotate-180' : ''}`}>
-                                  {hasImages ? (
-                                    <>
-                                      <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-                                      </svg>
-                                      <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                      </svg>
-                                    </>
-                                  ) : (
-                                    <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 sm:w-5 sm:h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-                                    </svg>
-                                  )}
-                                </div>
+                            ) : (
+                              <div className="aspect-[4/3] w-full bg-[#1a1a1a] rounded-md border border-[#ffffff]/5 flex items-center justify-center">
+                                <span className="text-[#ffffff]/10 text-xs">NO PHOTO</span>
+                              </div>
+                            )}
+                          </div>
+
+                          {/* Content Column */}
+                          <div className="flex flex-col justify-start pt-1 sm:pt-0">
+
+                            {/* Mobile Image (Visible only on mobile) */}
+                            {mainPhoto && (
+                              <div
+                                onClick={() => handleEventClick(event)}
+                                className="sm:hidden aspect-[4/3] w-full overflow-hidden rounded-md cursor-pointer mb-4 bg-[#1a1a1a]"
+                              >
+                                <img
+                                  src={mainPhoto}
+                                  alt={event.title}
+                                  className="w-full h-full object-cover"
+                                  loading="lazy"
+                                />
+                              </div>
+                            )}
+
+                            <div>
+                              {event.milestone && (
+                                <span className="text-[#9dff00]/80 text-[10px] sm:text-xs md:text-sm font-bold uppercase tracking-[0.1em] sm:tracking-[0.15em] mb-1 sm:mb-2 line-clamp-2 block">
+                                  {event.milestone}
+                                </span>
+                              )}
+                              <h3
+                                onClick={() => handleEventClick(event)}
+                                className={`text-lg sm:text-xl md:text-2xl font-extrabold text-white uppercase tracking-tight mb-2 sm:mb-3 leading-tight ${hasImages ? 'cursor-pointer hover:text-[#9dff00] transition-colors' : ''}`}
+                              >
+                                {event.title}
+                              </h3>
+                              {event.description && (
+                                <p className="text-[#e0e0e0]/80 text-sm sm:text-base leading-relaxed max-w-2xl">
+                                  {event.description}
+                                </p>
+                              )}
+
+                              {/* View Gallery Button for Mobile/Desktop explicitly? */}
+                              {hasImages && (
+                                <button
+                                  onClick={() => handleEventClick(event)}
+                                  className="mt-3 sm:mt-4 text-[#9dff00] text-xs sm:text-sm font-bold uppercase tracking-wider flex items-center gap-2 hover:bg-[#9dff00]/10 px-3 py-1.5 -ml-3 rounded-full transition-colors w-fit"
+                                >
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><circle cx="8.5" cy="8.5" r="1.5"></circle><polyline points="21 15 16 10 5 21"></polyline></svg>
+                                  View Gallery
+                                </button>
                               )}
                             </div>
                           </div>
                         </article>
-
-                        {/* Expandable Content */}
-                        <div
-                          className={`overflow-hidden transition-all duration-500 ease-in-out ${isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}
-                        >
-                          <div className="bg-[#1a1a1a] p-4 sm:p-6 md:p-8 border-b border-[#9dff00]/10">
-                            {event.description && (
-                              <p className="text-[#e0e0e0] mb-6 text-sm sm:text-base md:text-lg max-w-3xl leading-relaxed">
-                                {event.description}
-                              </p>
-                            )}
-                            {hasImages && (
-                              <EventGallery
-                                images={images}
-                                folderSlug={folderSlug}
-                                title={event.title}
-                              />
-                            )}
-                          </div>
-                        </div>
                       </div>
                     );
                   })}
@@ -239,7 +266,11 @@ const EventsPage = () => {
               </div>
             ))}
           </div>
-        </section>
+        </section >
+
+        {/* Gallery Modal */}
+
+
 
         {/* Call to Action */}
         <section className="bg-[#1a1a1a] border-t border-[#9dff00]/10 py-10 sm:py-12 md:py-16 px-4 sm:px-6 md:px-8 lg:px-16">
@@ -255,10 +286,10 @@ const EventsPage = () => {
             </button>
           </div>
         </section>
-      </main>
+      </main >
 
       <Footer />
-    </div>
+    </div >
   );
 };
 

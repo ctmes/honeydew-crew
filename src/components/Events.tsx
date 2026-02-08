@@ -52,53 +52,49 @@ const Events = () => {
   ];
 
   return (
-    <section id="events" className="relative bg-[#1a1a1a] py-32 px-6">
-      <div className="noise-texture absolute inset-0" />
-      
+    <section id="events" className="relative bg-background py-32 px-6">
       <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-20 border-b border-gray-200 pb-10"
         >
-          <h2 className="text-5xl md:text-7xl font-extrabold text-white mb-4 tracking-tight uppercase">
-            Events & <span className="text-[#ffe600]">Shows</span>
+          <h2 className="text-6xl md:text-8xl font-black text-foreground mb-4 tracking-tighter uppercase leading-none">
+            Events & <span className="text-primary">Shows</span>
           </h2>
-          <p className="text-lg text-[#e0e0e0] max-w-2xl mx-auto">
-            Join us at our upcoming performances and workshops
+          <p className="text-xl text-muted-foreground font-medium max-w-2xl">
+            Where to find us next.
           </p>
         </motion.div>
 
-        <div className="space-y-6">
+        <div className="space-y-1">
           {events.map((event, index) => (
             <motion.div
               key={event.id}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
               className="group relative"
             >
-              <div className="grid md:grid-cols-[300px,1fr] gap-6 bg-[#0f0f0f] rounded-xl overflow-hidden hover:shadow-2xl transition-all duration-300 hover:translate-y-[-4px]">
+              <div className="grid md:grid-cols-[400px,1fr] bg-card overflow-hidden group-hover:bg-secondary transition-colors duration-300 cursor-pointer">
                 {/* Image */}
-                <div className="relative aspect-[4/3] md:aspect-auto overflow-hidden">
+                <div className="relative aspect-[16/9] md:aspect-auto overflow-hidden">
                   <img
                     src={event.image}
                     alt={event.title}
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#0f0f0f]/50" />
-                  
+
                   {/* Status Badge */}
                   <div className="absolute top-4 left-4">
                     <span
-                      className={`px-4 py-1.5 rounded-full text-xs font-semibold uppercase tracking-wider ${
-                        event.status === 'upcoming'
-                          ? 'bg-[#b300ff] text-white neon-glow-purple'
-                          : 'bg-white/10 text-[#e0e0e0] backdrop-blur-sm'
-                      }`}
+                      className={`px-4 py-1 text-sm font-bold uppercase tracking-widest ${event.status === 'upcoming'
+                          ? 'bg-primary text-black'
+                          : 'bg-white/80 text-black backdrop-blur-sm'
+                        }`}
                     >
                       {event.status}
                     </span>
@@ -106,23 +102,32 @@ const Events = () => {
                 </div>
 
                 {/* Content */}
-                <div className="p-8 flex flex-col justify-center">
-                  <h3 className="text-3xl font-bold text-white mb-4 group-hover:text-[#9dff00] transition-colors duration-200">
+                <div className="p-8 md:p-12 flex flex-col justify-center relative">
+                  <h3 className="text-3xl md:text-4xl font-black text-foreground mb-6 uppercase tracking-tight group-hover:text-primary transition-colors duration-300">
                     {event.title}
                   </h3>
-                  
-                  <div className="space-y-3 text-[#e0e0e0]">
-                    <div className="flex items-center gap-3">
-                      <Calendar className="w-5 h-5 text-[#9dff00]" />
-                      <span>{event.date}</span>
+
+                  <div className="space-y-4 text-muted-foreground font-medium text-lg">
+                    <div className="flex items-center gap-4">
+                      <Calendar className="w-5 h-5 text-foreground" />
+                      <span className="group-hover:text-foreground transition-colors">{event.date}</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <MapPin className="w-5 h-5 text-[#b300ff]" />
-                      <span>{event.location}</span>
+                    <div className="flex items-center gap-4">
+                      <MapPin className="w-5 h-5 text-foreground" />
+                      <span className="group-hover:text-foreground transition-colors">{event.location}</span>
                     </div>
-                    <div className="flex items-center gap-3">
-                      <Users className="w-5 h-5 text-[#ffe600]" />
-                      <span>{event.attendees} attendees</span>
+                    <div className="flex items-center gap-4">
+                      <Users className="w-5 h-5 text-foreground" />
+                      <span className="group-hover:text-foreground transition-colors">{event.attendees} attendees</span>
+                    </div>
+                  </div>
+
+                  {/* Arrow Indicator */}
+                  <div className="hidden md:block absolute bottom-12 right-12 opacity-0 -translate-x-4 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                    <div className="w-12 h-12 rounded-full border border-gray-300 flex items-center justify-center">
+                      <svg className="w-6 h-6 text-primary" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                      </svg>
                     </div>
                   </div>
                 </div>

@@ -2,9 +2,8 @@ import { motion } from 'framer-motion';
 
 const About = () => {
   return (
-    <section id="about" className="relative bg-[#0f0f0f] py-32 px-6">
-      <div className="noise-texture absolute inset-0" />
-      
+    <section id="about" className="relative bg-card py-32 px-6 overflow-hidden">
+
       <div className="relative z-10 max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-16 items-center">
           {/* Media */}
@@ -15,17 +14,16 @@ const About = () => {
             transition={{ duration: 0.6 }}
             className="relative"
           >
-            <div className="aspect-[4/5] rounded-xl overflow-hidden">
+            <div className="aspect-[4/5] overflow-hidden">
               <img
                 src="https://images.unsplash.com/photo-1504609773096-104ff2c73ba4?w=800&q=80"
                 alt="Dance Group"
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#9dff00]/20 to-transparent" />
             </div>
-            
-            {/* Accent Element */}
-            <div className="absolute -bottom-6 -right-6 w-48 h-48 bg-[#9dff00]/20 rounded-xl blur-3xl" />
+
+            {/* Accent Element - Sharp Block instead of Blur */}
+            <div className="absolute -bottom-6 -right-6 w-24 h-24 bg-primary z-[-1]" />
           </motion.div>
 
           {/* Content */}
@@ -35,41 +33,36 @@ const About = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-5xl md:text-7xl font-extrabold text-white mb-6 tracking-tight uppercase">
-              About <span className="text-[#b300ff]">Us</span>
+            <h2 className="text-6xl md:text-8xl font-black text-foreground mb-8 tracking-tighter uppercase leading-none">
+              About <span className="text-primary">Us</span>
             </h2>
-            
-            <div className="space-y-6 text-[#e0e0e0] text-lg leading-relaxed">
+
+            <div className="space-y-8 text-muted-foreground text-lg leading-relaxed font-medium">
               <p>
-                <span className="text-white font-semibold">Honeydew Crew</span> is a high-energy dance collective 
-                specializing in K-pop and J-pop choreography. Founded in 2020, we've grown from a small 
-                group of passionate dancers to a recognized name in the dance cover community.
-              </p>
-              
-              <p>
-                Our mission is to bring the electrifying energy of K-pop and J-pop performances to audiences 
-                worldwide, while fostering a community of talented dancers who share our passion for precision, 
-                creativity, and stage presence.
-              </p>
-              
-              <p>
-                Inspired by legendary studios like <span className="text-[#9dff00] font-semibold">1MILLION Dance Studio</span>, 
-                we combine technical excellence with bold artistic expression. Every performance is a celebration 
-                of dance culture and the power of collective creativity.
+                <span className="text-foreground font-bold">Honeydew Crew</span> is a high-energy dance collective
+                redefining K-pop and J-pop coverage.
               </p>
 
-              <div className="grid grid-cols-3 gap-6 pt-8">
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-[#9dff00] mb-2">50+</div>
-                  <div className="text-sm text-[#e0e0e0] uppercase tracking-wider">Covers</div>
+              <p>
+                We don't just cover dances; we create performances. Our mission is to capture the raw energy of urban dance culture and bring it to the streets.
+              </p>
+
+              <p className="border-l-4 border-primary pl-6 py-2 text-foreground font-bold italic">
+                "We don't need a stage to dance."
+              </p>
+
+              <div className="grid grid-cols-3 gap-8 pt-8 border-t border-border">
+                <div className="text-left">
+                  <div className="text-5xl font-black text-foreground mb-2 tracking-tighter">50+</div>
+                  <div className="text-xs text-primary font-bold uppercase tracking-widest">Covers</div>
                 </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-[#ff006e] mb-2">8</div>
-                  <div className="text-sm text-[#e0e0e0] uppercase tracking-wider">Members</div>
+                <div className="text-left">
+                  <div className="text-5xl font-black text-foreground mb-2 tracking-tighter">8</div>
+                  <div className="text-xs text-primary font-bold uppercase tracking-widest">Members</div>
                 </div>
-                <div className="text-center">
-                  <div className="text-4xl font-bold text-[#ff006e] mb-2">100K+</div>
-                  <div className="text-sm text-[#e0e0e0] uppercase tracking-wider">Views</div>
+                <div className="text-left">
+                  <div className="text-5xl font-black text-foreground mb-2 tracking-tighter">100K</div>
+                  <div className="text-xs text-primary font-bold uppercase tracking-widest">Views</div>
                 </div>
               </div>
             </div>

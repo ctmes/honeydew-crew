@@ -104,93 +104,66 @@ const Members = () => {
   ];
 
   return (
-    <section id="members" className="relative bg-[#1a1a1a] py-32 px-6">
-      <div className="noise-texture absolute inset-0" />
-      
+    <section id="members" className="relative bg-background py-32 px-6 overflow-hidden">
+
       <div className="relative z-10 max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="mb-20 border-b border-gray-200 pb-10"
         >
-          <h2 className="text-5xl md:text-7xl font-extrabold text-white mb-4 tracking-tight uppercase">
-            Our <span className="text-[#ffe600]">Team</span>
+          <h2 className="text-6xl md:text-8xl font-black text-foreground mb-4 tracking-tighter uppercase leading-none">
+            The <span className="text-primary">Crew</span>
           </h2>
-          <p className="text-lg text-[#e0e0e0] max-w-2xl mx-auto">
-            Meet the talented dancers behind every performance
+          <p className="text-xl text-muted-foreground font-medium max-w-2xl">
+            Meet the dancers behind the movement.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-0.5 bg-gray-200 border border-gray-200">
           {members.map((member, index) => (
             <motion.div
               key={member.id}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="relative group"
-              onMouseEnter={() => setHoveredId(member.id)}
-              onMouseLeave={() => setHoveredId(null)}
+              transition={{ duration: 0.4, delay: index * 0.1 }}
+              className="group relative aspect-[3/4] overflow-hidden bg-white hover:z-10"
             >
-              <div
-                className={`relative aspect-square rounded-xl overflow-hidden cursor-pointer transition-all duration-300 ${
-                  hoveredId === member.id ? 'shadow-2xl translate-y-[-8px]' : ''
-                }`}
-              >
-                {/* Photo */}
+              <div className="absolute inset-0 bg-gray-100">
                 <img
                   src={member.photo}
                   alt={member.name}
-                  className={`w-full h-full object-cover transition-all duration-500 ${
-                    hoveredId === member.id ? 'grayscale-0' : 'grayscale'
-                  }`}
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-110 group-hover:grayscale-0 grayscale"
                 />
+              </div>
 
-                {/* Info Overlay */}
-                <div
-                  className={`absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent transition-opacity duration-300 ${
-                    hoveredId === member.id ? 'opacity-100' : 'opacity-0'
-                  }`}
-                >
-                  <div className="absolute bottom-0 left-0 right-0 p-6 transform transition-transform duration-300">
-                    <h3 className="text-white font-bold text-xl mb-1 tracking-wide">
-                      {member.name}
-                    </h3>
-                    <p className="text-[#9dff00] text-sm mb-4 font-medium">
-                      {member.role}
-                    </p>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                <h3 className="text-2xl font-black text-white uppercase tracking-tighter mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  {member.name}
+                </h3>
+                <p className="text-primary font-bold uppercase text-sm tracking-wider transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-75">
+                  {member.role}
+                </p>
 
-                    {/* Social Icons */}
-                    <div className="flex gap-3">
-                      {member.socials.instagram && (
-                        <a
-                          href={member.socials.instagram}
-                          className="w-9 h-9 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-[#b300ff] transition-colors duration-200"
-                        >
-                          <Instagram className="w-4 h-4 text-white" />
-                        </a>
-                      )}
-                      {member.socials.twitter && (
-                        <a
-                          href={member.socials.twitter}
-                          className="w-9 h-9 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-[#b300ff] transition-colors duration-200"
-                        >
-                          <Twitter className="w-4 h-4 text-white" />
-                        </a>
-                      )}
-                      {member.socials.youtube && (
-                        <a
-                          href={member.socials.youtube}
-                          className="w-9 h-9 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center hover:bg-[#b300ff] transition-colors duration-200"
-                        >
-                          <Youtube className="w-4 h-4 text-white" />
-                        </a>
-                      )}
-                    </div>
-                  </div>
+                <div className="flex gap-4 mt-4 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 delay-100">
+                  {member.socials.instagram && (
+                    <a href={member.socials.instagram} className="text-white hover:text-primary transition-colors">
+                      <Instagram className="w-5 h-5" />
+                    </a>
+                  )}
+                  {member.socials.twitter && (
+                    <a href={member.socials.twitter} className="text-white hover:text-primary transition-colors">
+                      <Twitter className="w-5 h-5" />
+                    </a>
+                  )}
+                  {member.socials.youtube && (
+                    <a href={member.socials.youtube} className="text-white hover:text-primary transition-colors">
+                      <Youtube className="w-5 h-5" />
+                    </a>
+                  )}
                 </div>
               </div>
             </motion.div>

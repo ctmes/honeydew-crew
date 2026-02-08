@@ -48,7 +48,7 @@ const EmblaRow = ({
                         className="flex-[0_0_auto] min-w-0 pl-4 relative"
                     >
                         <div
-                            className="relative w-64 sm:w-80 md:w-96 aspect-video overflow-hidden rounded-lg brightness-90 hover:brightness-110 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-[#9dff00]/20"
+                            className="relative w-72 sm:w-96 md:w-[28rem] aspect-[4/3] overflow-hidden rounded-lg brightness-90 hover:brightness-110 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-[#9dff00]/20"
                             onClick={() => onImageClick(index)}
                         >
                             <img
