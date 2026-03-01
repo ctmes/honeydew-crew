@@ -95,7 +95,7 @@ const Hero = () => {
           muted
           loop
           playsInline
-          poster="/covers.jpg"
+          poster="/covers.webp"
           aria-label="Hero Video - Background performance showcase"
         >
           <source src="/hero-video.webm" type="video/webm" />

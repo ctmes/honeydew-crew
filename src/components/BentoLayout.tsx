@@ -42,7 +42,7 @@ const BentoLayout = () => {
             aria-label="View latest covers"
           >
             {/* Background Image with Scale Effect */}
-            <div className="absolute inset-0 bg-[url('/covers.jpg')] bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform" />
+            <div className="absolute inset-0 bg-[url('/covers.webp')] bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105 will-change-transform" />
             <div className="absolute inset-0 bg-black/10 group-hover:bg-transparent transition-colors duration-500" />
 
             {/* Content with Overlay Gradient */}
